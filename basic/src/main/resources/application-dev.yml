@@ -5,3 +5,31 @@ myConfig:
       work:
         polling: queue_work_polling
         ack: queue_work_ack
+        endurance: queue_work_endurance
+        confirm: queue_work_confirm
+        direct:
+          queue_worker01: queue_direct_worker01
+          queue_worker02: queue_direct_worker02
+        topic:
+          queue_worker01: queue_topic_worker01
+          queue_worker02: queue_topic_worker02
+
+
+    exchanges:
+      fanout: exchange_fanout
+      direct: exchange_direct
+      topic: exchange_topic
+
+    routingKeys:
+      direct:
+        worker01:
+          key1: key1
+          key2: key2
+        worker02:
+          key1: key1
+      topic:
+        worker01:
+          key1: "*.orange.*"
+        worker02:
+          key1: "*.*.rabbit"
+          key2: "lazy.#"

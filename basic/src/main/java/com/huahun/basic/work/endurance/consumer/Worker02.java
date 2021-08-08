@@ -49,7 +49,7 @@ public class Worker02 {
              */
             channel.basicQos(1);
             //采用手动应答
-            channel.basicConsume(RabbitMqConstant.RABBITMQ_QUEUE_NAME_WORK_ACK,false,deliverCallback,cancelCallback);
+            channel.basicConsume(RabbitMqConstant.RABBITMQ_QUEUE_NAME_WORK_ENDURANCE,false,deliverCallback,cancelCallback);
             log.info("消费者Worker02启动完毕，正在等待接受消息...");
         } catch (IOException e) {
             e.printStackTrace();

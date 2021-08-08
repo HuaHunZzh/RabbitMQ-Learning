@@ -28,7 +28,7 @@ public class Producer {
              * 注意：如果一个队列已存在，且没有声明为持久化，那么下面的代码会报错，
              * 必须将其删除后，重新创建并声明为持久化。
              */
-            channel.queueDeclare(RabbitMqConstant.RABBITMQ_QUEUE_NAME_WORK_ACK, true, false, false,null);
+            channel.queueDeclare(RabbitMqConstant.RABBITMQ_QUEUE_NAME_WORK_ENDURANCE, true, false, false,null);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,9 +39,10 @@ public class Producer {
                 /*
                  * 消息持久化是在生产者发送消息时就要声明的。
                  * 注意：将消息标记为持久化并不能完全保证丢失消息。尽管它告诉RabbitMQ将消息保存到外存，但是这里依然存在当消息刚准备存储在磁盘
-                 * 的时候，但是还没有存储完，消息还在缓存的一个间隔点。此时并没有真正写入外存，持久性保证并不强。
+                 * 的时候，但是还没有存储完，消息还在缓存的一个间隔点。此时并没有真正写入外存，持久性保证并不强。要想保证真正的持久化，需要用到
+                 * 后面的“发布确认”技术。
                  */
-                channel.basicPublish("", RabbitMqConstant.RABBITMQ_QUEUE_NAME_WORK_ACK, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(StandardCharsets.UTF_8));
+                channel.basicPublish("", RabbitMqConstant.RABBITMQ_QUEUE_NAME_WORK_ENDURANCE, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes(StandardCharsets.UTF_8));
             } catch (IOException e) {
                 e.printStackTrace();
             }
