@@ -1,0 +1,7 @@
+myConfig:
+  rabbitmq:
+    queues:
+      simple: queue_simple
+      work:
+        polling: queue_work_polling
+        ack: queue_work_ack

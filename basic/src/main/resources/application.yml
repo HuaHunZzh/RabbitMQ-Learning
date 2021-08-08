@@ -1,0 +1,13 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: hello-world
+  profiles:
+    active: dev #默认为开发环境
+  rabbitmq:
+    host: 192.168.88.130
+    port: 15672
+    username: guest
+    password: guest
